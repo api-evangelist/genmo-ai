@@ -1,0 +1,101 @@
+aid: genmo-ai
+name: Genmo
+review:
+  question: Does Genmo expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Genmo publishes no first-party hosted
+    network API at all - and therefore no server-push transport (WebSocket or
+    SSE) to model. Genmo's public surfaces are: the open-source Mochi model (a
+    local Python inference pipeline, not a network service), a credit-based
+    consumer web app / Playground, and third-party hosted inference from
+    partners (Replicate, fal.ai). The partner APIs are asynchronous but use
+    request/response REST plus polling or webhooks, not WebSockets, and are out
+    of scope as they are not operated by Genmo.
+findings:
+  summary: |
+    Genmo does not publish a documented public WebSocket API. In fact Genmo does
+    not publish a first-party hosted developer REST API of any kind. Genmo is a
+    video-generation research lab whose flagship product, Mochi 1, is an
+    open-source (Apache-2.0) text-to-video diffusion model. Programmatic access
+    exists in three honest forms: (1) self-hosting the open-source model via its
+    Python pipeline ("simple composable API": MochiSingleGPUPipeline), CLI,
+    Gradio UI, or ComfyUI; (2) third-party hosted inference APIs from partners -
+    Replicate (genmoai/mochi-1) and fal.ai (fal-ai/mochi-v1, now deprecated); and
+    (3) a credit-based consumer web app and Playground at genmo.ai/play. None of
+    these expose a WebSocket (ws:// or wss://) endpoint. The partner hosted APIs
+    are asynchronous but use REST submit plus polling or webhook callbacks.
+  openSource: |
+    The core product, Mochi 1, is open source under Apache-2.0
+    (github.com/genmoai/mochi), with weights on Hugging Face
+    (genmo/mochi-1-preview). It is a 10B-parameter AsymmDiT text-to-video model
+    generating 480p video. The repo ships a composable Python pipeline, a CLI,
+    a Gradio UI, native ComfyUI support, and a weight-download script; single-GPU
+    inference needs roughly 60GB VRAM. There is no first-party hosted API - Genmo
+    directs developers to self-host or to partner platforms.
+  transports:
+    - protocol: Python Library
+      scheme: local
+      documented: true
+      note: MochiSingleGPUPipeline / cli.py / gradio_ui.py / ComfyUI. Local inference, not a network API. First-party (open source).
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.replicate.com/v1
+      documented: true
+      note: Third-party. Replicate predictions API for genmoai/mochi-1 - async submit plus poll or webhook. Operated by Replicate, not Genmo.
+    - protocol: REST
+      scheme: https
+      documented: true
+      note: Third-party. fal.ai queue API for fal-ai/mochi-v1 (deprecated) - submit, status, result. Operated by fal.ai, not Genmo.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented on any Genmo surface, nor on the partner hosted APIs, as of the review date.
+  firstPartyHostedApi: false
+  firstPartyHostedApiNote: |
+    Genmo exposes no first-party hosted developer API. genmo.ai has no developer
+    or API portal; the pricing page sells web-app credits, not API access. All
+    hosted programmatic access to Mochi is provided by third parties.
+  endpointsModeled: true
+  endpointsModeledNote: |
+    The Replicate and fal.ai endpoints captured in apis.yml are modeled from
+    partner documentation, not from any Genmo-operated API. The self-hosted entry
+    describes a local Python pipeline, not a network endpoint. No OpenAPI was
+    authored because there is no first-party hosted surface to ground, and
+    fabricating a Genmo REST API would be dishonest.
+sources:
+  - url: https://www.genmo.ai/
+    type: Website
+    note: Markets the open-source model and the Playground. No developer/API portal linked.
+  - url: https://www.genmo.ai/pricing
+    type: Pricing
+    note: Credit-based web-app tiers (Free 50, Lite 1200, Standard 5000 credits). No API access plan.
+  - url: https://www.genmo.ai/play
+    type: Playground
+    note: Free hosted consumer playground for testing Mochi.
+  - url: https://github.com/genmoai/mochi
+    type: SourceCode
+    note: Apache-2.0 Mochi model; composable Python pipeline, CLI, Gradio, ComfyUI. No hosted API.
+  - url: https://huggingface.co/genmo/mochi-1-preview
+    type: SourceCode
+    note: Model weights for self-hosting.
+  - url: https://replicate.com/genmoai/mochi-1
+    type: APIReference
+    note: Third-party hosted Mochi 1 via Replicate predictions API, ~$0.42/run on H100.
+  - url: https://fal.ai/models/fal-ai/mochi-v1/api
+    type: APIReference
+    note: Third-party hosted Mochi via fal.ai queue API; listed deprecated at review date.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on any Genmo or partner API. Genmo
+    publishes no first-party hosted API - only an open-source model
+    (self-hosted Python pipeline), a credit-based consumer web app, and
+    third-party hosted inference (Replicate, fal.ai) that use REST plus polling
+    or webhooks. No AsyncAPI or OpenAPI document was created; the hosted
+    endpoints in apis.yml are modeled from partner docs and flagged
+    endpointsModeled, and no first-party surface exists to ground.

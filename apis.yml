@@ -1,0 +1,120 @@
+aid: genmo-ai
+url: https://raw.githubusercontent.com/api-evangelist/genmo-ai/refs/heads/main/apis.yml
+name: Genmo
+kind: company
+description: >-
+  Genmo is a San Francisco research lab building open-source video generation
+  models. Its flagship release, Mochi 1, is an Apache-2.0 licensed 10B-parameter
+  text-to-video diffusion model (AsymmDiT architecture) with strong prompt
+  adherence and high-fidelity motion. Genmo does NOT publish a first-party hosted
+  developer REST API. Programmatic access to Mochi comes in three honest forms:
+  (1) the open-source model itself, self-hosted via the repo's Python pipeline
+  ("simple composable API"), CLI, Gradio UI, or ComfyUI; (2) third-party hosted
+  inference APIs from partners such as Replicate and fal.ai; and (3) a
+  credit-based consumer web app and Playground at genmo.ai/play. The endpoints
+  documented here for hosted access are modeled from partner documentation and
+  are not operated by Genmo.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Video Generation
+- AI Video
+- Generative AI
+- Text-to-Video
+- Open Source
+- Mochi
+- Diffusion Model
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: genmo-ai:genmo-ai-mochi-pipeline-api
+  name: Genmo Mochi Pipeline (Self-Hosted OSS)
+  tags:
+  - Video Generation
+  - Text-to-Video
+  - Open Source
+  - Self-Hosted
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://github.com/genmoai/mochi
+  properties:
+  - url: https://github.com/genmoai/mochi
+    type: Documentation
+  - url: https://huggingface.co/genmo/mochi-1-preview
+    type: SourceCode
+  - url: https://www.genmo.ai/blog/mochi-1-a-new-sota-in-open-text-to-video
+    type: Blog
+  endpointsModeled: true
+  description: >-
+    The first-party access surface is the open-source model itself. The Mochi
+    repo (Apache-2.0) ships a "simple composable API" in Python -
+    MochiSingleGPUPipeline built from T5ModelFactory, DitModelFactory, and
+    DecoderModelFactory - invoked with prompt, resolution, num_frames, inference
+    steps, guidance scale, and seed to generate 480p video locally. It also
+    provides a cli.py, a Gradio UI (gradio_ui.py), and native ComfyUI support.
+    This is a code library / local inference pipeline, not a hosted network API;
+    weights (~60GB VRAM) are downloaded from Hugging Face. There is no Genmo REST
+    endpoint - self-host it or use a partner (see the Replicate and fal.ai
+    entries).
+- aid: genmo-ai:genmo-ai-mochi-replicate-api
+  name: Mochi 1 on Replicate (Third-Party Hosted)
+  tags:
+  - Video Generation
+  - Text-to-Video
+  - Hosted Inference
+  - Third Party
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://replicate.com/genmoai/mochi-1
+  baseURL: https://api.replicate.com/v1
+  properties:
+  - url: https://replicate.com/genmoai/mochi-1
+    type: Documentation
+  - url: https://replicate.com/genmoai/mochi-1/api
+    type: APIReference
+  endpointsModeled: true
+  description: >-
+    Third-party hosted access to Genmo's Mochi 1 via Replicate's predictions API
+    (model identifier genmoai/mochi-1). Runs on Nvidia H100 hardware, ~$0.42 per
+    run, typically completing within 5 minutes at 480p. Invoked through
+    Replicate's standard async prediction pattern - POST a prediction with the
+    model version and inputs, poll or receive a webhook, then fetch the output
+    video URL. This API is operated by Replicate, not Genmo; endpoints are
+    modeled from Replicate's platform documentation.
+- aid: genmo-ai:genmo-ai-mochi-fal-api
+  name: Mochi v1 on fal.ai (Third-Party Hosted)
+  tags:
+  - Video Generation
+  - Text-to-Video
+  - Hosted Inference
+  - Third Party
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fal.ai/models/fal-ai/mochi-v1
+  properties:
+  - url: https://fal.ai/models/fal-ai/mochi-v1/api
+    type: APIReference
+  endpointsModeled: true
+  description: >-
+    Third-party hosted access to Mochi via fal.ai (model identifier
+    fal-ai/mochi-v1), using fal's queue API - submit with prompt, negative_prompt,
+    seed, enable_prompt_expansion, and num_frames, then check status and fetch the
+    resulting video URL. NOTE - as of the review date fal.ai lists this endpoint
+    as deprecated / no longer supported. This API is operated by fal.ai, not
+    Genmo; endpoints are modeled from fal's documentation and retained for
+    discoverability.
+common:
+- type: GitHubOrganization
+  url: https://github.com/genmoai
+- type: LinkedIn
+  url: https://www.linkedin.com/company/genmoai
+- type: Website
+  url: https://www.genmo.ai
+- type: Documentation
+  url: https://github.com/genmoai/mochi
+- type: Playground
+  url: https://www.genmo.ai/play
+- type: Plans
+  url: plans/genmo-ai-plans-pricing.yml
+- url: https://www.genmo.ai/blog
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

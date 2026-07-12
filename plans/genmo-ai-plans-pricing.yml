@@ -1,0 +1,152 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Genmo
+providerId: genmo-ai
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Video Generation
+- AI Video
+- Text-to-Video
+- Open Source
+- Plans
+description: >-
+  Genmo has two distinct cost models, neither of which is a metered first-party
+  developer API. First, the Mochi 1 model is open source (Apache-2.0) and free to
+  self-host - you provide the GPU (~60GB VRAM) and pay only for your own compute.
+  Second, the Genmo consumer web app / Playground (genmo.ai/play) is sold on a
+  monthly credit system - Free, Lite, and Standard tiers - where a Mochi video
+  generation costs 100 credits and a Replay costs 10 credits. Programmatic hosted
+  billing is not offered by Genmo; it comes from third-party partners such as
+  Replicate (approximately $0.42 per Mochi run) and fal.ai, each with their own
+  pricing. The USD prices for the Lite and Standard web-app tiers did not render
+  on the pricing page at capture time and are left unreconciled.
+notes: >-
+  Yearly billing on the web-app tiers is advertised at roughly 20% off monthly.
+  Verify current credit counts, per-tier USD prices, and per-generation credit
+  costs on https://www.genmo.ai/pricing during reconciliation. Third-party hosted
+  rates (Replicate, fal.ai) are governed by those platforms, not Genmo.
+sources:
+- https://www.genmo.ai/pricing
+- https://www.genmo.ai/play
+- https://github.com/genmoai/mochi
+- https://replicate.com/genmoai/mochi-1
+plans:
+- id: genmo-open-source
+  name: Mochi 1 Open Source (Self-Hosted)
+  type: free
+  description: >-
+    The full Mochi 1 text-to-video model, Apache-2.0 licensed and free to
+    download from GitHub and Hugging Face for personal or commercial use. Run it
+    via the repo's Python pipeline, CLI, Gradio UI, or ComfyUI. Cost is your own
+    GPU compute only (single-GPU inference needs roughly 60GB VRAM).
+  entries:
+  - label: Self-Hosted Inference
+    name: self_hosted_inference
+    type: usage
+    metric: videos
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (self-hosted; you provide GPU compute)
+    userMultiplied: false
+  elements:
+  - name: Apache-2.0 License
+  - name: Commercial Use Allowed
+  - name: Python Pipeline API
+  - name: ComfyUI Support
+- id: genmo-web-free
+  name: Web App - Free
+  type: free
+  description: >-
+    Free tier of the Genmo consumer web app / Playground. Includes a monthly
+    credit allowance and applies a Genmo watermark to outputs.
+  entries:
+  - label: Monthly Credits
+    name: web_free_credits
+    type: usage
+    metric: credits
+    limit: 50
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: 50 Credits per Month
+  - name: Genmo Watermark
+  - name: Mochi Generation (100 credits each)
+- id: genmo-web-lite
+  name: Web App - Lite
+  type: paid
+  description: >-
+    Paid consumer tier with a larger monthly credit allowance, no watermark,
+    commercial usage, and higher queue priority. USD price did not render at
+    capture time.
+  entries:
+  - label: Monthly Credits
+    name: web_lite_credits
+    type: usage
+    metric: credits
+    limit: 1200
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: paid (USD price not reconciled; see pricing page)
+    userMultiplied: false
+  elements:
+  - name: 1,200 Credits per Month
+  - name: No Watermark
+  - name: Commercial Usage
+  - name: High Queue Priority
+- id: genmo-web-standard
+  name: Web App - Standard
+  type: paid
+  description: >-
+    Top consumer tier with the largest monthly credit allowance, no watermark,
+    commercial usage, highest priority queue, and early model access. USD price
+    did not render at capture time.
+  entries:
+  - label: Monthly Credits
+    name: web_standard_credits
+    type: usage
+    metric: credits
+    limit: 5000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: paid (USD price not reconciled; see pricing page)
+    userMultiplied: false
+  elements:
+  - name: 5,000 Credits per Month
+  - name: No Watermark
+  - name: Commercial Usage
+  - name: Highest Priority Queue and Early Model Access
+- id: genmo-third-party-hosted
+  name: Third-Party Hosted (Replicate / fal.ai)
+  type: usage
+  description: >-
+    Pay-per-run hosted inference from partners, not billed by Genmo. Replicate
+    runs genmoai/mochi-1 at approximately $0.42 per run on H100 hardware; fal.ai
+    hosts fal-ai/mochi-v1 (listed deprecated) with its own rates.
+  entries:
+  - label: Hosted Run
+    name: hosted_run
+    type: usage
+    metric: videos
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $0.42 per run on Replicate (partner-billed)
+    userMultiplied: false
+  elements:
+  - name: Replicate Hosted API
+  - name: fal.ai Hosted API (Deprecated)
+  - name: Partner-Governed Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
