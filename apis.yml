@@ -32,6 +32,14 @@ tags:
   - AI Video
   - Generative AI
   - Text-to-Video
+  - Open-Source
+  - Mochi
+  - Diffusion Model
+tags_raw:
+  - Video Generation
+  - AI Video
+  - Generative AI
+  - Text-to-Video
   - Open Source
   - Mochi
   - Diffusion Model
@@ -42,6 +50,11 @@ apis:
   - aid: genmo-ai:genmo-ai-mochi-replicate-api
     name: Mochi 1 on Replicate (Third-Party Hosted)
     tags:
+      - Video Generation
+      - Text-to-Video
+      - Hosted Inference
+      - Third-Party
+    tags_raw:
       - Video Generation
       - Text-to-Video
       - Hosted Inference
@@ -69,6 +82,11 @@ apis:
       - Video Generation
       - Text-to-Video
       - Hosted Inference
+      - Third-Party
+    tags_raw:
+      - Video Generation
+      - Text-to-Video
+      - Hosted Inference
       - Third Party
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://fal.ai/models/fal-ai/mochi-v1
@@ -87,6 +105,11 @@ apis:
   - aid: genmo-ai:genmo-ai-mochi-pipeline-api
     name: Genmo Mochi Pipeline (Self-Hosted OSS)
     tags:
+      - Video Generation
+      - Text-to-Video
+      - Open-Source
+      - Self-Hosted
+    tags_raw:
       - Video Generation
       - Text-to-Video
       - Open Source
