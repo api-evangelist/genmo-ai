@@ -64,7 +64,7 @@ apis:
       - Video Generation
       - Text-to-Video
       - Hosted Inference
-      - Third-Party
+      - Third Party
     tags_raw:
       - Video Generation
       - Text-to-Video
@@ -93,7 +93,7 @@ apis:
       - Video Generation
       - Text-to-Video
       - Hosted Inference
-      - Third-Party
+      - Third Party
     tags_raw:
       - Video Generation
       - Text-to-Video
