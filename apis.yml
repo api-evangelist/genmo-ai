@@ -43,7 +43,7 @@ tags:
   - AI Video
   - Generative AI
   - Text-to-Video
-  - Open-Source
+  - Open Source
   - Mochi
   - Diffusion Model
 tags_raw:
@@ -54,6 +54,7 @@ tags_raw:
   - Open Source
   - Mochi
   - Diffusion Model
+  - Open-Source
 created: '2026-07-11'
 modified: '2026-07-25'
 specificationVersion: '0.23'
@@ -118,13 +119,14 @@ apis:
     tags:
       - Video Generation
       - Text-to-Video
-      - Open-Source
+      - Open Source
       - Self-Hosted
     tags_raw:
       - Video Generation
       - Text-to-Video
       - Open Source
       - Self-Hosted
+      - Open-Source
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://github.com/genmoai/mochi
     properties:
