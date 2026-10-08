@@ -155,3 +155,52 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  units:
+  - credit
+  plans:
+  - name: Mochi 1 Open Source (Self-Hosted)
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Web App - Free
+    access: free
+    model: metered
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
+  - name: Web App - Lite
+    access: paid
+    model: metered
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
+  - name: Web App - Standard
+    access: paid
+    model: metered
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - month
+  - name: Third-Party Hosted (Replicate / fal.ai)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - month
