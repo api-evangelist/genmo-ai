@@ -1,4 +1,4 @@
-# Genmo (genmo-ai)
+# Genmo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,98 +64,88 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Genmo is a San Francisco research lab building open-source video generation models. Its flagship release, **Mochi 1**, is an Apache-2.0 licensed ~10B-parameter text-to-video diffusion model (AsymmDiT architecture) with strong prompt adherence and high-fidelity 480p motion.
+Genmo is a San Francisco research lab building open-source video generation models. Its flagship release, Mochi 1, is an Apache-2.0 licensed 10B-parameter text-to-video diffusion model (AsymmDiT architecture) with strong prompt adherence and high-fidelity motion. Genmo does NOT publish a first-party hosted developer REST API. Programmatic access to Mochi comes in three honest forms: (1) the open-source model itself, self-hosted via the repo's Python pipeline ("simple composable API"), CLI, Gradio UI, or ComfyUI; (2) third-party hosted inference APIs from partners such as Replicate and fal.ai; and (3) a credit-based consumer web app and Playground at genmo.ai/play. The endpoints documented here for hosted access are modeled from partner documentation and are not operated by Genmo.
 
-**Honest access note:** Genmo does **not** publish a first-party hosted developer REST API. There is no developer or API portal on genmo.ai, and the pricing page sells consumer web-app credits, not API access. Programmatic access to Mochi comes in three forms:
+**Areas:** Video Generation · AI Video · Generative AI · Open Source · Mochi · Diffusion Model
 
-1. **Open source, self-hosted (first-party).** Download the model and run it yourself. The repo ships a "simple composable API" in Python (`MochiSingleGPUPipeline`), a CLI (`cli.py`), a Gradio UI, and native ComfyUI support. This is a local inference library, not a network service, and single-GPU inference needs ~60GB VRAM.
-2. **Third-party hosted inference (partners).** Mochi is served as a pay-per-run API by platforms such as **Replicate** (`genmoai/mochi-1`, ~$0.42/run on H100) and **fal.ai** (`fal-ai/mochi-v1`, now listed deprecated). These APIs are operated by the partners, not by Genmo.
-3. **Consumer web app / Playground.** A credit-based product at [genmo.ai/play](https://www.genmo.ai/play) for generating videos in the browser (not a developer API).
+## Genmo on APIs.io
 
-The hosted endpoints documented in this catalog are **modeled from partner documentation** (`endpointsModeled: true`) and are not Genmo-operated. No Genmo REST API is fabricated here.
+Everything profiled for Genmo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/genmo-ai/](https://apis.io/providers/genmo-ai/)** — or go straight to one of the APIs or properties below.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/genmo-ai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/genmo-ai/refs/heads/main/apis.yml)
+### APIs (3)
 
-## Tags
+- [Mochi 1 on Replicate (Third-Party Hosted)](https://apis.io/apis/genmo-ai/genmo-ai-mochi-replicate-api/) — Third-party hosted access to Genmo's Mochi 1 via Replicate's predictions API (model identifier genmoai/mochi-1). Runs on Nvidia H100 hardware, ~$0.42 per…
+- [Mochi v1 on fal.ai (Third-Party Hosted)](https://apis.io/apis/genmo-ai/genmo-ai-mochi-fal-api/) — Third-party hosted access to Mochi via fal.ai (model identifier fal-ai/mochi-v1), using fal's queue API - submit with prompt, negative_prompt, seed,…
+- [Genmo Mochi Pipeline (Self-Hosted OSS)](https://apis.io/apis/genmo-ai/genmo-ai-mochi-pipeline-api/) — The first-party access surface is the open-source model itself. The Mochi repo (Apache-2.0) ships a "simple composable API" in Python -…
 
-- Video Generation
-- AI Video
-- Generative AI
-- Text-to-Video
-- Open Source
-- Mochi
-- Diffusion Model
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+#### Plans and pricing (1)
 
-## APIs
+Published plans, tiers and prices.
 
+- [Genmo Ai Plans Pricing](https://apis.io/plans/genmo-ai/genmo-ai-plans-pricing/)
 
-#### Tags
+## Where to find this API
 
-- Video Generation
-- Text-to-Video
-- Open Source
-- Self-Hosted
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://github.com/genmoai/mochi)
-- [Source Code / Weights](https://huggingface.co/genmo/mochi-1-preview)
-- [Blog](https://www.genmo.ai/blog/mochi-1-a-new-sota-in-open-text-to-video)
-
-### Mochi 1 on Replicate (Third-Party Hosted)
-
-Third-party hosted access to Mochi 1 via Replicate's predictions API (model `genmoai/mochi-1`). Runs on Nvidia H100, ~$0.42/run, typically under 5 minutes at 480p, using Replicate's async submit + poll/webhook pattern. Operated by Replicate, not Genmo.
-
-- **Human URL:** [https://replicate.com/genmoai/mochi-1](https://replicate.com/genmoai/mochi-1)
-- **Base URL:** `https://api.replicate.com/v1`
-- **Endpoints Modeled:** yes (from Replicate docs)
-
-#### Tags
-
-- Video Generation
-- Text-to-Video
-- Hosted Inference
-- Third Party
-
-#### Properties
-
-- [Documentation](https://replicate.com/genmoai/mochi-1)
-- [API Reference](https://replicate.com/genmoai/mochi-1/api)
-
-### Mochi v1 on fal.ai (Third-Party Hosted)
-
-Third-party hosted access to Mochi via fal.ai (model `fal-ai/mochi-v1`) using fal's queue API — submit with `prompt`, `negative_prompt`, `seed`, `enable_prompt_expansion`, and `num_frames`, then check status and fetch the video URL. **Note:** fal.ai lists this endpoint as deprecated / no longer supported as of the review date. Operated by fal.ai, not Genmo.
-
-- **Human URL:** [https://fal.ai/models/fal-ai/mochi-v1](https://fal.ai/models/fal-ai/mochi-v1)
-- **Endpoints Modeled:** yes (from fal.ai docs; deprecated)
-
-#### Tags
-
-- Video Generation
-- Text-to-Video
-- Hosted Inference
-- Third Party
-
-#### Properties
-
-- [API Reference](https://fal.ai/models/fal-ai/mochi-v1/api)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/genmoai)
-- [LinkedIn](https://www.linkedin.com/company/genmoai)
 - [Website](https://www.genmo.ai)
 - [Documentation](https://github.com/genmoai/mochi)
-- [Playground](https://www.genmo.ai/play)
-- [Plans](plans/genmo-ai-plans-pricing.yml)
 - [Blog](https://www.genmo.ai/blog)
+- [GitHub](https://github.com/genmoai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 10.0** — minimal · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 22.6 |
+| Access clarity | 7.9 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 0.0** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/genmo-ai/](https://apis.io/providers/genmo-ai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Genmo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/genmo-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
